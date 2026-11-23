@@ -4,19 +4,19 @@
  * các file html/css/js khác.
  */
 const WEDDING_CONFIG = {
-  // Chữ lồng / monogram hiển thị ở trang bìa, ví dụ "G & L"
-  monogram: "G & L",
+  // Chữ lồng / monogram hiển thị ở trang bìa, ví dụ "D & N"
+  monogram: "D & N",
 
   groom: {
-    name: "Gia Bảo",                 // tên gọi ngắn, hiển thị ở các tiêu đề
-    fullName: "Nguyễn Gia Bảo",       // họ tên đầy đủ
+    name: "Hải Duy",                 // tên gọi ngắn, hiển thị ở các tiêu đề
+    fullName: "Trần Hải Duy",         // họ tên đầy đủ
     photo: "assets/images/groom.svg",
     bio: "Người sẽ nắm tay em đi qua mọi mùa mưa nắng.",
   },
 
   bride: {
-    name: "Thùy Linh",
-    fullName: "Trần Thùy Linh",
+    name: "Ngọc Nhi",
+    fullName: "Nguyễn Ngọc Nhi",
     photo: "assets/images/bride.svg",
     bio: "Người con gái khiến anh tin vào chuyện cổ tích có thật.",
   },
@@ -24,43 +24,52 @@ const WEDDING_CONFIG = {
   // Ảnh bìa trang mở đầu
   coverPhoto: "assets/images/cover-bg.svg",
 
-  // Ngày giờ tổ chức tiệc cưới — viết theo chuẩn ISO: "YYYY-MM-DDTHH:mm:00+07:00"
-  // Thứ trong tuần sẽ được website TỰ ĐỘNG tính ra từ ngày này.
-  weddingDateTime: "2027-02-14T11:00:00+07:00",
-
   // Dòng chữ ngày âm lịch (ghi tay vì JS không tự quy đổi âm lịch)
-  lunarDateText: "Nhằm ngày mùng 9 tháng Giêng năm Đinh Mùi",
+  lunarDateText: "Tức ngày 28 tháng 10 năm Bính Ngọ",
 
-  venue: {
-    name: "Trung Tâm Tiệc Cưới Hoa Hồng",
-    address: "123 Đường Nguyễn Huệ, Quận 1, TP. Hồ Chí Minh",
-    // Lấy link này bằng cách: vào Google Maps > tìm địa điểm > Chia sẻ > Sao chép liên kết
-    mapUrl: "https://maps.google.com/?q=Nguy%E1%BB%85n+Hu%E1%BB%87+Qu%E1%BA%ADn+1+TP+HCM",
-  },
+  // Đám cưới có 2 lễ riêng (Vu Quy ở nhà gái, Thành Hôn ở nhà trai) nên khai báo
+  // dạng danh sách — thêm/bớt lễ tuỳ ý. Ngày giờ sớm nhất trong danh sách sẽ
+  // được dùng để tính đếm ngược và tô đậm trên lịch.
+  events: [
+    {
+      label: "Lễ Vu Quy",
+      dateTime: "2026-12-06T13:00:00+07:00",
+      venueName: "Tư Gia Nhà Gái",
+      address: "Thôn Ngô Xá, xã Phật Tích, huyện Tiên Du, Bắc Ninh",
+      mapUrl:
+        "https://www.google.com/maps/search/?api=1&query=" +
+        encodeURIComponent("Thôn Ngô Xá, xã Phật Tích, huyện Tiên Du, Bắc Ninh"),
+    },
+    {
+      label: "Lễ Thành Hôn",
+      dateTime: "2026-12-06T14:00:00+07:00",
+      venueName: "Tư Gia Nhà Trai",
+      address: "Thôn Đại Tảo, xã Việt Đoàn, huyện Tiên Du, Bắc Ninh",
+      mapUrl:
+        "https://www.google.com/maps/search/?api=1&query=" +
+        encodeURIComponent("Thôn Đại Tảo, xã Việt Đoàn, huyện Tiên Du, Bắc Ninh"),
+    },
+  ],
 
   groomFamily: {
     title: "Nhà Trai",
-    father: "Ông Nguyễn Văn A",
-    mother: "Bà Lê Thị B",
-    address: "Hà Nội",
+    father: "Ông Trần Văn Dinh",
+    mother: "Bà Ngô Thị Hương",
   },
 
   brideFamily: {
     title: "Nhà Gái",
-    father: "Ông Trần Văn C",
-    mother: "Bà Phạm Thị D",
-    address: "TP. Hồ Chí Minh",
+    father: "Ông Nguyễn Tiến Trí",
+    mother: "Bà Đỗ Thị Lý",
   },
 
   invitationText:
-    "Trân trọng kính mời đến dự tiệc cưới của chúng tôi. Sự hiện diện của bạn là niềm vinh hạnh cho gia đình hai họ.",
+    "Trân trọng kính mời quý khách tới dự bữa cơm thân mật, chung vui cùng gia đình chúng tôi. Sự hiện diện của quý khách là niềm vinh hạnh cho gia đình chúng tôi!",
 
-  // Lịch trình của buổi tiệc
+  // Lịch trình trong ngày — khớp với 2 lễ ở trên
   schedule: [
-    { time: "10:30", icon: "🚗", title: "Đón khách", desc: "Đón tiếp quan khách, chụp ảnh lưu niệm cùng cô dâu chú rể." },
-    { time: "11:00", icon: "💍", title: "Lễ thành hôn", desc: "Nghi lễ chính thức ra mắt hai họ." },
-    { time: "11:30", icon: "🥂", title: "Khai tiệc", desc: "Nâng ly chúc mừng hạnh phúc đôi uyên ương." },
-    { time: "12:30", icon: "💌", title: "Giao lưu", desc: "Cô dâu chú rể đến từng bàn gửi lời cảm ơn quan khách." },
+    { time: "13:00", icon: "🌸", title: "Lễ Vu Quy", desc: "Diễn ra tại tư gia nhà gái - Thôn Ngô Xá, xã Phật Tích, huyện Tiên Du, Bắc Ninh." },
+    { time: "14:00", icon: "💍", title: "Lễ Thành Hôn", desc: "Diễn ra tại tư gia nhà trai - Thôn Đại Tảo, xã Việt Đoàn, huyện Tiên Du, Bắc Ninh." },
   ],
 
   // Ảnh trong album, thêm/bớt tuỳ ý
@@ -76,20 +85,21 @@ const WEDDING_CONFIG = {
   ],
 
   // Thông tin chuyển khoản mừng cưới — mã BIN ngân hàng tra tại https://api.vietqr.io/v2/banks
+  // SỬA accountNo bằng số tài khoản THẬT của bạn trước khi gửi thiệp cho khách!
   gifts: {
     groom: {
       label: "Chú Rể",
       bankName: "Vietcombank",
       bin: "970436",
       accountNo: "0123456789",
-      accountName: "NGUYEN GIA BAO",
+      accountName: "TRAN HAI DUY",
     },
     bride: {
       label: "Cô Dâu",
       bankName: "MB Bank",
       bin: "970422",
       accountNo: "9876543210",
-      accountName: "TRAN THUY LINH",
+      accountName: "NGUYEN NGOC NHI",
     },
   },
 

@@ -2,7 +2,8 @@
   "use strict";
 
   const CFG = WEDDING_CONFIG;
-  const weddingDate = new Date(CFG.weddingDateTime);
+  // Ngày giờ sớm nhất trong danh sách lễ dùng để đếm ngược / tô lịch.
+  const weddingDate = new Date(Math.min(...CFG.events.map((ev) => new Date(ev.dateTime).getTime())));
 
   const fmtFull = new Intl.DateTimeFormat("vi-VN", {
     weekday: "long",
@@ -26,17 +27,15 @@
     groomBio: CFG.groom.bio,
     brideBio: CFG.bride.bio,
     weddingDateFull: capitalize(fmtFull.format(weddingDate)),
-    weddingTimeWeekdayFull: `${fmtTime.format(weddingDate)} - ${capitalize(fmtFull.format(weddingDate))}`,
-    lunarDateText: CFG.lunarDateText,
-    venueName: CFG.venue.name,
-    venueAddress: CFG.venue.address,
     invitationText: CFG.invitationText,
     groomFamilyTitle: CFG.groomFamily.title,
     groomFather: CFG.groomFamily.father,
     groomMother: CFG.groomFamily.mother,
+    groomChildLine: `Chú rể: ${CFG.groom.fullName}`,
     brideFamilyTitle: CFG.brideFamily.title,
     brideFather: CFG.brideFamily.father,
     brideMother: CFG.brideFamily.mother,
+    brideChildLine: `Cô dâu: ${CFG.bride.fullName}`,
     thankYouMessage: CFG.thankYouMessage,
   };
 
@@ -55,9 +54,22 @@
     });
   }
 
-  function setupMapLink() {
-    const link = document.getElementById("mapLink");
-    if (link) link.href = CFG.venue.mapUrl;
+  function setupEvents() {
+    const list = document.getElementById("eventList");
+    list.innerHTML = CFG.events
+      .map((ev) => {
+        const dt = new Date(ev.dateTime);
+        return `
+        <div class="event__card">
+          <h4 class="event__label">${ev.label}</h4>
+          <p class="event__time">${fmtTime.format(dt)} - ${capitalize(fmtFull.format(dt))}</p>
+          <p class="event__lunar">${CFG.lunarDateText}</p>
+          <p class="event__venue-name">${ev.venueName}</p>
+          <p class="event__venue-address">${ev.address}</p>
+          <a class="btn btn--primary" href="${ev.mapUrl}" target="_blank" rel="noopener">Chỉ Đường</a>
+        </div>`;
+      })
+      .join("");
   }
 
   // ---------- Mở thiệp ----------
@@ -328,7 +340,7 @@
   function init() {
     bindText();
     bindImages();
-    setupMapLink();
+    setupEvents();
     setupCover();
     setupCountdown();
     setupGallery();

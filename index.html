@@ -62,11 +62,13 @@
         <h4 data-bind="groomFamilyTitle"></h4>
         <p data-bind="groomFather"></p>
         <p data-bind="groomMother"></p>
+        <p class="family-card__child" data-bind="groomChildLine"></p>
       </div>
       <div class="family-card">
         <h4 data-bind="brideFamilyTitle"></h4>
         <p data-bind="brideFather"></p>
         <p data-bind="brideMother"></p>
+        <p class="family-card__child" data-bind="brideChildLine"></p>
       </div>
     </div>
   </section>
@@ -74,13 +76,7 @@
   <!-- SỰ KIỆN -->
   <section class="section event">
     <h3 class="section__title">Thông Tin Buổi Lễ</h3>
-    <div class="event__card">
-      <p class="event__time" data-bind="weddingTimeWeekdayFull"></p>
-      <p class="event__lunar" data-bind="lunarDateText"></p>
-      <p class="event__venue-name" data-bind="venueName"></p>
-      <p class="event__venue-address" data-bind="venueAddress"></p>
-      <a id="mapLink" class="btn btn--primary" target="_blank" rel="noopener">Chỉ Đường</a>
-    </div>
+    <div class="event__list" id="eventList"></div>
   </section>
 
   <!-- CHUYỆN TÌNH YÊU -->
