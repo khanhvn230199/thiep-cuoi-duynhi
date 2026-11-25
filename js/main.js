@@ -2,8 +2,9 @@
   "use strict";
 
   const CFG = WEDDING_CONFIG;
-  // Ngày giờ sớm nhất trong danh sách lễ dùng để đếm ngược / tô lịch.
-  const weddingDate = new Date(Math.min(...CFG.events.map((ev) => new Date(ev.dateTime).getTime())));
+  const ALL_EVENTS = Object.values(CFG.eventsBySide).flatMap((side) => side.items);
+  // Ngày giờ sớm nhất trong tất cả các lễ (cả 2 bên) dùng để đếm ngược / tô lịch.
+  const weddingDate = new Date(Math.min(...ALL_EVENTS.map((ev) => new Date(ev.dateTime).getTime())));
 
   const fmtFull = new Intl.DateTimeFormat("vi-VN", {
     weekday: "long",
@@ -54,9 +55,10 @@
     });
   }
 
-  function setupEvents() {
+  function renderEventList(sideKey) {
+    const side = CFG.eventsBySide[sideKey];
     const list = document.getElementById("eventList");
-    list.innerHTML = CFG.events
+    list.innerHTML = side.items
       .map((ev) => {
         const dt = new Date(ev.dateTime);
         return `
@@ -70,6 +72,22 @@
         </div>`;
       })
       .join("");
+    document
+      .querySelectorAll("#eventTabs .tab-btn")
+      .forEach((btn) => btn.classList.toggle("is-active", btn.dataset.side === sideKey));
+  }
+
+  function setupEvents() {
+    const tabs = document.getElementById("eventTabs");
+    tabs.innerHTML = Object.entries(CFG.eventsBySide)
+      .map(([key, side]) => `<button type="button" class="tab-btn" data-side="${key}">${side.tabLabel}</button>`)
+      .join("");
+    tabs.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-side]");
+      if (!btn) return;
+      renderEventList(btn.getAttribute("data-side"));
+    });
+    renderEventList(Object.keys(CFG.eventsBySide)[0]);
   }
 
   // ---------- Mở thiệp ----------
@@ -173,7 +191,12 @@
     const card = document.getElementById("calendarCard");
     const year = weddingDate.getFullYear();
     const month = weddingDate.getMonth();
-    const weddingDay = weddingDate.getDate();
+    const eventDays = new Set(
+      ALL_EVENTS.filter((ev) => {
+        const d = new Date(ev.dateTime);
+        return d.getFullYear() === year && d.getMonth() === month;
+      }).map((ev) => new Date(ev.dateTime).getDate())
+    );
     const monthLabel = capitalize(
       new Intl.DateTimeFormat("vi-VN", { month: "long", year: "numeric" }).format(weddingDate)
     );
@@ -186,7 +209,7 @@
     let cells = "";
     for (let i = 0; i < startOffset; i++) cells += `<div class="day"></div>`;
     for (let d = 1; d <= daysInMonth; d++) {
-      const highlight = d === weddingDay ? "day--highlight" : "";
+      const highlight = eventDays.has(d) ? "day--highlight" : "";
       cells += `<div class="day ${highlight}">${d}</div>`;
     }
 

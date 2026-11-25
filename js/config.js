@@ -27,29 +27,58 @@ const WEDDING_CONFIG = {
   // Dòng chữ ngày âm lịch (ghi tay vì JS không tự quy đổi âm lịch)
   lunarDateText: "Tức ngày 28 tháng 10 năm Bính Ngọ",
 
-  // Đám cưới có 2 lễ riêng (Vu Quy ở nhà gái, Thành Hôn ở nhà trai) nên khai báo
-  // dạng danh sách — thêm/bớt lễ tuỳ ý. Ngày giờ sớm nhất trong danh sách sẽ
-  // được dùng để tính đếm ngược và tô đậm trên lịch.
-  events: [
-    {
-      label: "Lễ Vu Quy",
-      dateTime: "2026-12-06T13:00:00+07:00",
-      venueName: "Tư Gia Nhà Gái",
-      address: "Thôn Ngô Xá, xã Phật Tích, huyện Tiên Du, Bắc Ninh",
-      mapUrl:
-        "https://www.google.com/maps/search/?api=1&query=" +
-        encodeURIComponent("Thôn Ngô Xá, xã Phật Tích, huyện Tiên Du, Bắc Ninh"),
+  // Đám cưới có lễ riêng theo từng bên (nhà trai / nhà gái), nên khai báo thành
+  // 2 nhóm — khách xem thiệp bấm tab "Nhà Trai" / "Nhà Gái" để xem đúng lịch
+  // trình bên đó. Ngày giờ sớm nhất trong TẤT CẢ các lễ dùng để tính đếm ngược
+  // và tô đậm trên lịch (các ngày có sự kiện đều được tô đậm).
+  eventsBySide: {
+    groom: {
+      tabLabel: "Nhà Trai",
+      items: [
+        {
+          label: "Bữa Cơm Thân Mật",
+          dateTime: "2026-12-05T17:00:00+07:00",
+          venueName: "Tư Gia Nhà Trai",
+          address: "Thôn Đại Tảo, xã Việt Đoàn, huyện Tiên Du, Bắc Ninh",
+          mapUrl:
+            "https://www.google.com/maps/search/?api=1&query=" +
+            encodeURIComponent("Thôn Đại Tảo, xã Việt Đoàn, huyện Tiên Du, Bắc Ninh"),
+        },
+        {
+          label: "Lễ Thành Hôn",
+          dateTime: "2026-12-06T14:00:00+07:00",
+          venueName: "Tư Gia Nhà Trai",
+          address: "Thôn Đại Tảo, xã Việt Đoàn, huyện Tiên Du, Bắc Ninh",
+          mapUrl:
+            "https://www.google.com/maps/search/?api=1&query=" +
+            encodeURIComponent("Thôn Đại Tảo, xã Việt Đoàn, huyện Tiên Du, Bắc Ninh"),
+        },
+      ],
     },
-    {
-      label: "Lễ Thành Hôn",
-      dateTime: "2026-12-06T14:00:00+07:00",
-      venueName: "Tư Gia Nhà Trai",
-      address: "Thôn Đại Tảo, xã Việt Đoàn, huyện Tiên Du, Bắc Ninh",
-      mapUrl:
-        "https://www.google.com/maps/search/?api=1&query=" +
-        encodeURIComponent("Thôn Đại Tảo, xã Việt Đoàn, huyện Tiên Du, Bắc Ninh"),
+    bride: {
+      tabLabel: "Nhà Gái",
+      items: [
+        {
+          label: "Bữa Cơm Thân Mật",
+          dateTime: "2026-12-05T17:00:00+07:00",
+          venueName: "Tư Gia Nhà Gái",
+          address: "Thôn Ngô Xá, xã Phật Tích, huyện Tiên Du, Bắc Ninh",
+          mapUrl:
+            "https://www.google.com/maps/search/?api=1&query=" +
+            encodeURIComponent("Thôn Ngô Xá, xã Phật Tích, huyện Tiên Du, Bắc Ninh"),
+        },
+        {
+          label: "Lễ Vu Quy",
+          dateTime: "2026-12-06T13:00:00+07:00",
+          venueName: "Tư Gia Nhà Gái",
+          address: "Thôn Ngô Xá, xã Phật Tích, huyện Tiên Du, Bắc Ninh",
+          mapUrl:
+            "https://www.google.com/maps/search/?api=1&query=" +
+            encodeURIComponent("Thôn Ngô Xá, xã Phật Tích, huyện Tiên Du, Bắc Ninh"),
+        },
+      ],
     },
-  ],
+  },
 
   groomFamily: {
     title: "Nhà Trai",
@@ -66,10 +95,11 @@ const WEDDING_CONFIG = {
   invitationText:
     "Trân trọng kính mời quý khách tới dự bữa cơm thân mật, chung vui cùng gia đình chúng tôi. Sự hiện diện của quý khách là niềm vinh hạnh cho gia đình chúng tôi!",
 
-  // Lịch trình trong ngày — khớp với 2 lễ ở trên
+  // Lịch trình chung cả 2 ngày — khớp với các lễ khai báo trong eventsBySide ở trên
   schedule: [
-    { time: "13:00", icon: "🌸", title: "Lễ Vu Quy", desc: "Diễn ra tại tư gia nhà gái - Thôn Ngô Xá, xã Phật Tích, huyện Tiên Du, Bắc Ninh." },
-    { time: "14:00", icon: "💍", title: "Lễ Thành Hôn", desc: "Diễn ra tại tư gia nhà trai - Thôn Đại Tảo, xã Việt Đoàn, huyện Tiên Du, Bắc Ninh." },
+    { time: "05/12, 17:00", icon: "🍽️", title: "Bữa Cơm Thân Mật", desc: "Tổ chức riêng tại tư gia mỗi bên vào tối hôm trước." },
+    { time: "06/12, 13:00", icon: "🌸", title: "Lễ Vu Quy", desc: "Diễn ra tại tư gia nhà gái - Thôn Ngô Xá, xã Phật Tích, huyện Tiên Du, Bắc Ninh." },
+    { time: "06/12, 14:00", icon: "💍", title: "Lễ Thành Hôn", desc: "Diễn ra tại tư gia nhà trai - Thôn Đại Tảo, xã Việt Đoàn, huyện Tiên Du, Bắc Ninh." },
   ],
 
   // Ảnh trong album, thêm/bớt tuỳ ý
