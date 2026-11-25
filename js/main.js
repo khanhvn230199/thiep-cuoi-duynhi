@@ -55,20 +55,45 @@
     });
   }
 
+  // Gộp các lễ chung một địa điểm vào chung 1 thẻ, để không lặp lại địa chỉ
+  // và nút "Chỉ Đường" nhiều lần (ví dụ Bữa Cơm Thân Mật và Lễ Thành Hôn cùng
+  // tổ chức tại tư gia nhà trai).
+  function groupEventsByVenue(items) {
+    const groups = [];
+    items.forEach((ev) => {
+      const key = `${ev.venueName}|${ev.address}`;
+      let group = groups.find((g) => g.key === key);
+      if (!group) {
+        group = { key, venueName: ev.venueName, address: ev.address, mapUrl: ev.mapUrl, items: [] };
+        groups.push(group);
+      }
+      group.items.push(ev);
+    });
+    return groups;
+  }
+
   function renderEventList(sideKey) {
     const side = CFG.eventsBySide[sideKey];
     const list = document.getElementById("eventList");
-    list.innerHTML = side.items
-      .map((ev) => {
-        const dt = new Date(ev.dateTime);
+    list.innerHTML = groupEventsByVenue(side.items)
+      .map((group) => {
+        const slots = group.items
+          .map(
+            (ev, i, arr) => `
+            <div class="event__slot">
+              <p class="event__slot-label">${ev.label}</p>
+              <p class="event__slot-time">${fmtTime.format(new Date(ev.dateTime))}</p>
+              <p class="event__slot-date">${capitalize(fmtFull.format(new Date(ev.dateTime)))}</p>
+            </div>${i < arr.length - 1 ? '<div class="event__slot-sep">→</div>' : ""}`
+          )
+          .join("");
         return `
         <div class="event__card">
-          <h4 class="event__label">${ev.label}</h4>
-          <p class="event__time">${fmtTime.format(dt)} - ${capitalize(fmtFull.format(dt))}</p>
+          <div class="event__slots">${slots}</div>
           <p class="event__lunar">${CFG.lunarDateText}</p>
-          <p class="event__venue-name">${ev.venueName}</p>
-          <p class="event__venue-address">${ev.address}</p>
-          <a class="btn btn--primary" href="${ev.mapUrl}" target="_blank" rel="noopener">Chỉ Đường</a>
+          <p class="event__venue-name">${group.venueName}</p>
+          <p class="event__venue-address">${group.address}</p>
+          <a class="btn btn--primary" href="${group.mapUrl}" target="_blank" rel="noopener">Chỉ Đường</a>
         </div>`;
       })
       .join("");

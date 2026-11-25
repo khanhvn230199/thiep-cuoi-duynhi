@@ -172,13 +172,25 @@ img { max-width: 100%; display: block; }
   width: 100%;
   margin: 0 auto;
 }
-.event__label {
-  font-family: var(--font-script);
-  font-size: 1.6rem;
-  color: var(--color-accent);
-  margin: 0 0 0.6rem;
+.event__slots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px dashed #eadfce;
 }
-.event__time { font-family: var(--font-heading); font-size: 1.4rem; color: var(--color-primary); margin: 0 0 0.3rem; }
+.event__slot { flex: 1; min-width: 0; }
+.event__slot-label {
+  font-family: var(--font-script);
+  font-size: 1.3rem;
+  color: var(--color-accent);
+  margin: 0 0 0.3rem;
+}
+.event__slot-time { font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-primary); font-weight: 600; margin: 0; }
+.event__slot-date { font-size: 0.72rem; color: var(--color-text-light); margin: 0.1rem 0 0; }
+.event__slot-sep { color: var(--color-accent); font-size: 1.1rem; flex: 0 0 auto; }
 .event__lunar { font-size: 0.85rem; color: var(--color-text-light); margin-bottom: 1.2rem; }
 .event__venue-name { font-weight: 600; margin-bottom: 0.2rem; }
 .event__venue-address { color: var(--color-text-light); margin-bottom: 1.5rem; font-size: 0.9rem; }
