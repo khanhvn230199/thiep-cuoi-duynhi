@@ -134,7 +134,7 @@ const WEDDING_CONFIG = {
   },
 
   // Nhạc nền — để trống chuỗi "" nếu chưa có nhạc, nút nhạc sẽ tự ẩn
-  musicSrc: "",
+  musicSrc: "assets/music/background.mp3",
 
   // Link Google Apps Script Web App để lời chúc/RSVP tự động ghi vào Google Sheet
   // của bạn. Làm theo hướng dẫn trong file google-apps-script.gs rồi dán link vào đây.
