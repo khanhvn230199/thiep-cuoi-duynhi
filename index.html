@@ -26,7 +26,11 @@
   <div class="cover__content">
     <p class="cover__eyebrow">Thân mời</p>
     <h1 class="cover__monogram" data-bind="monogram"></h1>
-    <p class="cover__names"><span data-bind="groomName"></span> &amp; <span data-bind="brideName"></span></p>
+    <p class="cover__names name-pair">
+      <span class="name-pair__name" data-bind="groomName"></span>
+      <span class="name-pair__amp">&amp;</span>
+      <span class="name-pair__name" data-bind="brideName"></span>
+    </p>
     <p class="cover__date" data-bind="weddingDateFull"></p>
     <button id="openInvitationBtn" class="btn btn--outline">Mở Thiệp</button>
   </div>
@@ -38,7 +42,11 @@
   <!-- HERO -->
   <section class="section hero">
     <p class="eyebrow">Chúng tôi sắp cưới nhau!</p>
-    <h2 class="hero__names"><span data-bind="groomName"></span> &amp; <span data-bind="brideName"></span></h2>
+    <h2 class="hero__names name-pair">
+      <span class="name-pair__name" data-bind="groomName"></span>
+      <span class="name-pair__amp">&amp;</span>
+      <span class="name-pair__name" data-bind="brideName"></span>
+    </h2>
     <p class="hero__date" data-bind="weddingDateFull"></p>
   </section>
 
@@ -154,7 +162,11 @@
   <footer class="section thankyou">
     <h3 class="thankyou__title">Thank You!</h3>
     <p data-bind="thankYouMessage"></p>
-    <p class="thankyou__names"><span data-bind="groomName"></span> &amp; <span data-bind="brideName"></span></p>
+    <p class="thankyou__names name-pair">
+      <span class="name-pair__name" data-bind="groomName"></span>
+      <span class="name-pair__amp">&amp;</span>
+      <span class="name-pair__name" data-bind="brideName"></span>
+    </p>
   </footer>
 
 </main>
