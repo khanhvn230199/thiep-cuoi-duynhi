@@ -231,6 +231,14 @@ img { max-width: 100%; display: block; }
 .event__venue-address { color: var(--color-text-light); margin-bottom: 1.5rem; font-size: 0.9rem; }
 
 /* ---------- STORY ---------- */
+.story__quote {
+  font-family: var(--font-script);
+  font-size: 1.25rem;
+  color: var(--color-primary-dark);
+  max-width: 480px;
+  margin: 0 auto 1.8rem;
+  line-height: 1.5;
+}
 .story__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
 .story-card img { border-radius: 12px; aspect-ratio: 3/4; object-fit: cover; margin-bottom: 0.8rem; }
 .story-card h4 { font-family: var(--font-heading); color: var(--color-primary); margin: 0 0 0.4rem; }
