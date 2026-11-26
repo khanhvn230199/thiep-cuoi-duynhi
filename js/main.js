@@ -32,8 +32,8 @@
     brideFullName: CFG.bride.fullName,
     groomBio: CFG.groom.bio,
     brideBio: CFG.bride.bio,
-    weddingDateFull:
-      capitalize(fmtFull.format(weddingDate)) + (mainEvent.lunarText ? ` (${mainEvent.lunarText})` : ""),
+    weddingDateFull: capitalize(fmtFull.format(weddingDate)),
+    weddingDateLunar: mainEvent.lunarText ? `(${mainEvent.lunarText})` : "",
     invitationText: CFG.invitationText,
     groomFamilyTitle: CFG.groomFamily.title,
     groomFather: CFG.groomFamily.father,

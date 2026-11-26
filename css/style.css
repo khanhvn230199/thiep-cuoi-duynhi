@@ -99,6 +99,8 @@ img { max-width: 100%; display: block; }
   opacity: 0.9;
   margin-bottom: 2rem;
 }
+.cover__date span { display: block; }
+.cover__date-lunar { font-size: 0.8rem; opacity: 0.8; margin-top: 0.25rem; }
 
 /* ---------- MAIN / SECTIONS ---------- */
 .main { max-width: 640px; margin: 0 auto; overflow-x: hidden; }
@@ -120,6 +122,8 @@ img { max-width: 100%; display: block; }
 .hero { padding-top: 4rem; }
 .hero__names { font-family: var(--font-script); font-size: 3rem; color: var(--color-primary); margin: 0.5rem 0; }
 .hero__date { color: var(--color-text-light); letter-spacing: 0.08em; }
+.hero__date span { display: block; }
+.hero__date-lunar { font-size: 0.85rem; opacity: 0.85; margin-top: 0.25rem; }
 
 /* ---------- COUNTDOWN ---------- */
 .countdown__grid { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }

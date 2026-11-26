@@ -31,7 +31,10 @@
       <span class="name-pair__amp">&amp;</span>
       <span class="name-pair__name" data-bind="brideName"></span>
     </p>
-    <p class="cover__date" data-bind="weddingDateFull"></p>
+    <p class="cover__date">
+      <span data-bind="weddingDateFull"></span>
+      <span class="cover__date-lunar" data-bind="weddingDateLunar"></span>
+    </p>
     <button id="openInvitationBtn" class="btn btn--outline">Mở Thiệp</button>
   </div>
 </section>
@@ -47,7 +50,10 @@
       <span class="name-pair__amp">&amp;</span>
       <span class="name-pair__name" data-bind="brideName"></span>
     </h2>
-    <p class="hero__date" data-bind="weddingDateFull"></p>
+    <p class="hero__date">
+      <span data-bind="weddingDateFull"></span>
+      <span class="hero__date-lunar" data-bind="weddingDateLunar"></span>
+    </p>
   </section>
 
   <!-- COUNTDOWN -->
