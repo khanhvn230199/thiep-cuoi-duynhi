@@ -96,9 +96,9 @@
           .join("");
         return `
         <div class="event__card">
-          <div class="event__slots">${slots}</div>
           <p class="event__formal-invite">Trân trọng kính mời: <span class="event__invite-blank"></span></p>
           <p class="event__formal-sub">Tới dự buổi tiệc chung vui cùng gia đình chúng tôi</p>
+          <div class="event__slots">${slots}</div>
           <p class="event__venue-name">${group.venueName}</p>
           <p class="event__venue-address">${group.address}</p>
           <a class="btn btn--primary" href="${group.mapUrl}" target="_blank" rel="noopener">Chỉ Đường</a>
