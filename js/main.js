@@ -177,23 +177,33 @@
   }
 
   // ---------- Album ảnh + Lightbox ----------
-  let galleryImages = [];
+  // activeImages/currentIndex dùng chung cho cả album ảnh cưới và 2 ảnh ở
+  // phần "Chuyện Tình Của Chúng Tôi" — bấm ảnh nào thì lightbox mở đúng bộ đó.
+  let activeImages = [];
   let currentIndex = 0;
 
   function setupGallery() {
-    galleryImages = CFG.gallery;
     const grid = document.getElementById("galleryGrid");
-    grid.innerHTML = galleryImages
+    grid.innerHTML = CFG.gallery
       .map((src, i) => `<img src="${src}" alt="Ảnh cưới ${i + 1}" data-index="${i}" loading="lazy" />`)
       .join("");
     grid.addEventListener("click", (e) => {
       const target = e.target.closest("img[data-index]");
       if (!target) return;
-      openLightbox(Number(target.getAttribute("data-index")));
+      openLightbox(CFG.gallery, Number(target.getAttribute("data-index")));
     });
   }
 
-  function openLightbox(index) {
+  function setupStoryPhotos() {
+    const storyImages = [CFG.groom.photo, CFG.bride.photo];
+    document.querySelectorAll(".story-card img").forEach((img, i) => {
+      img.style.cursor = "zoom-in";
+      img.addEventListener("click", () => openLightbox(storyImages, i));
+    });
+  }
+
+  function openLightbox(images, index) {
+    activeImages = images;
     currentIndex = index;
     renderLightbox();
     document.getElementById("lightbox").hidden = false;
@@ -204,17 +214,17 @@
     document.body.style.overflow = "auto";
   }
   function renderLightbox() {
-    document.getElementById("lightboxImage").src = galleryImages[currentIndex];
-    document.getElementById("lightboxCounter").textContent = `${currentIndex + 1} / ${galleryImages.length}`;
+    document.getElementById("lightboxImage").src = activeImages[currentIndex];
+    document.getElementById("lightboxCounter").textContent = `${currentIndex + 1} / ${activeImages.length}`;
   }
   function setupLightboxControls() {
     document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
     document.getElementById("lightboxPrev").addEventListener("click", () => {
-      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      currentIndex = (currentIndex - 1 + activeImages.length) % activeImages.length;
       renderLightbox();
     });
     document.getElementById("lightboxNext").addEventListener("click", () => {
-      currentIndex = (currentIndex + 1) % galleryImages.length;
+      currentIndex = (currentIndex + 1) % activeImages.length;
       renderLightbox();
     });
     document.addEventListener("keydown", (e) => {
@@ -404,6 +414,7 @@
     setupEvents();
     setupCover();
     setupCountdown();
+    setupStoryPhotos();
     setupGallery();
     setupLightboxControls();
     setupCalendar();
