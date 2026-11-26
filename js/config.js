@@ -10,14 +10,14 @@ const WEDDING_CONFIG = {
   groom: {
     name: "Hải Duy",                 // tên gọi ngắn, hiển thị ở các tiêu đề
     fullName: "Trần Hải Duy",         // họ tên đầy đủ
-    photo: "assets/images/groom.svg",
+    photo: "assets/images/3.jpg",
     bio: "Người sẽ nắm tay em đi qua mọi mùa mưa nắng.",
   },
 
   bride: {
     name: "Ngọc Nhi",
     fullName: "Nguyễn Ngọc Nhi",
-    photo: "assets/images/bride.svg",
+    photo: "assets/images/2.jpg",
     bio: "Người con gái khiến anh tin vào chuyện cổ tích có thật.",
   },
 
