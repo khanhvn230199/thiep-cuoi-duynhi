@@ -91,7 +91,7 @@
               <p class="event__slot-time">${fmtTime.format(new Date(ev.dateTime))}</p>
               <p class="event__slot-date">${capitalize(fmtFull.format(new Date(ev.dateTime)))}</p>
               ${ev.lunarText ? `<p class="event__slot-lunar">${ev.lunarText}</p>` : ""}
-            </div>${i < arr.length - 1 ? '<div class="event__slot-sep">→</div>' : ""}`
+            </div>${i < arr.length - 1 ? '<div class="event__slot-sep">↓</div>' : ""}`
           )
           .join("");
         return `
