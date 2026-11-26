@@ -3,8 +3,13 @@
 
   const CFG = WEDDING_CONFIG;
   const ALL_EVENTS = Object.values(CFG.eventsBySide).flatMap((side) => side.items);
-  // Ngày giờ sớm nhất trong tất cả các lễ (cả 2 bên) dùng để đếm ngược / tô lịch.
-  const weddingDate = new Date(Math.min(...ALL_EVENTS.map((ev) => new Date(ev.dateTime).getTime())));
+  // Lễ chính (Thành Hôn / Vu Quy) luôn diễn ra sau cùng (sau Bữa Cơm Thân Mật tối
+  // hôm trước), nên dùng ngày giờ MUỘN NHẤT để hiển thị "ngày cưới" ở trang bìa
+  // và đếm ngược — còn tô lịch vẫn tính trên tất cả các lễ ở dưới.
+  const mainEvent = ALL_EVENTS.reduce((latest, ev) =>
+    new Date(ev.dateTime) > new Date(latest.dateTime) ? ev : latest
+  );
+  const weddingDate = new Date(mainEvent.dateTime);
 
   const fmtFull = new Intl.DateTimeFormat("vi-VN", {
     weekday: "long",
@@ -27,7 +32,8 @@
     brideFullName: CFG.bride.fullName,
     groomBio: CFG.groom.bio,
     brideBio: CFG.bride.bio,
-    weddingDateFull: capitalize(fmtFull.format(weddingDate)),
+    weddingDateFull:
+      capitalize(fmtFull.format(weddingDate)) + (mainEvent.lunarText ? ` (${mainEvent.lunarText})` : ""),
     invitationText: CFG.invitationText,
     groomFamilyTitle: CFG.groomFamily.title,
     groomFather: CFG.groomFamily.father,
