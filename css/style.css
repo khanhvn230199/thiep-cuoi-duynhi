@@ -295,9 +295,17 @@ img { max-width: 100%; display: block; }
 
 /* ---------- GIFT ---------- */
 .gift__intro { color: var(--color-text-light); margin-bottom: 1.5rem; }
-.gift__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.gift-card { background: #fff; border: 1px solid #eadfce; border-radius: 12px; padding: 1.2rem; }
-.gift-card img { border-radius: 8px; margin-bottom: 0.6rem; }
+.gift__tabs { display: flex; justify-content: center; gap: 0.6rem; margin-bottom: 1.5rem; }
+.gift__grid { display: flex; justify-content: center; }
+.gift-card {
+  background: #fff;
+  border: 1px solid #eadfce;
+  border-radius: 12px;
+  padding: 1.2rem;
+  max-width: 260px;
+  width: 100%;
+}
+.gift-card img { max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 0.6rem; }
 .gift-card h5 { margin: 0 0 0.3rem; color: var(--color-primary); font-family: var(--font-heading); font-size: 1.1rem; }
 .gift-card p { margin: 0.15rem 0; font-size: 0.8rem; }
 .gift-card button {

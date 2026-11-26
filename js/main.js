@@ -342,12 +342,10 @@
     )}`;
   }
 
-  function setupGifts() {
+  function renderGift(sideKey) {
+    const g = CFG.gifts[sideKey];
     const grid = document.getElementById("giftGrid");
-    const entries = [CFG.gifts.groom, CFG.gifts.bride];
-    grid.innerHTML = entries
-      .map(
-        (g, i) => `
+    grid.innerHTML = `
       <div class="gift-card">
         <img src="${vietQrUrl(g.bin, g.accountNo, g.accountName)}" alt="QR chuyển khoản ${g.label}" />
         <h5>${g.label}</h5>
@@ -355,11 +353,25 @@
         <p>${g.accountNo}</p>
         <p>${g.accountName}</p>
         <button type="button" data-copy="${g.accountNo}">Sao chép STK</button>
-      </div>`
-      )
-      .join("");
+      </div>`;
+    document
+      .querySelectorAll("#giftTabs .tab-btn")
+      .forEach((btn) => btn.classList.toggle("is-active", btn.dataset.side === sideKey));
+  }
 
-    grid.addEventListener("click", (e) => {
+  function setupGifts() {
+    const tabs = document.getElementById("giftTabs");
+    tabs.innerHTML = Object.entries(CFG.eventsBySide)
+      .map(([key, side]) => `<button type="button" class="tab-btn" data-side="${key}">${side.tabLabel}</button>`)
+      .join("");
+    tabs.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-side]");
+      if (!btn) return;
+      renderGift(btn.getAttribute("data-side"));
+    });
+    renderGift(Object.keys(CFG.eventsBySide)[0]);
+
+    document.getElementById("giftGrid").addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-copy]");
       if (!btn) return;
       navigator.clipboard
