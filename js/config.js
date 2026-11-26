@@ -37,7 +37,7 @@ const WEDDING_CONFIG = {
         {
           label: "Bữa Cơm Thân Mật",
           dateTime: "2026-12-05T17:00:00+07:00",
-          lunarText: "Tức ngày 27 tháng 10 âm lịch",
+          lunarText: "Tức ngày 27 tháng 10 năm Bính Ngọ",
           venueName: "Tư Gia Nhà Trai",
           address: "Thôn Đại Tảo, xã Việt Đoàn, huyện Tiên Du, Bắc Ninh",
           mapUrl:
@@ -62,7 +62,7 @@ const WEDDING_CONFIG = {
         {
           label: "Bữa Cơm Thân Mật",
           dateTime: "2026-12-05T17:00:00+07:00",
-          lunarText: "Tức ngày 27 tháng 10 âm lịch",
+          lunarText: "Tức ngày 27 tháng 10 năm Bính Ngọ",
           venueName: "Tư Gia Nhà Gái",
           address: "Thôn Ngô Xá, xã Phật Tích, huyện Tiên Du, Bắc Ninh",
           mapUrl:
