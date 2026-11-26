@@ -154,6 +154,25 @@ img { max-width: 100%; display: block; }
 .family-card__child { margin-top: 0.6rem !important; font-weight: 600; color: var(--color-accent); }
 
 /* ---------- EVENT ---------- */
+.event__formal-invite {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  color: var(--color-primary-dark);
+  margin-bottom: 0.4rem;
+}
+.event__invite-blank {
+  display: inline-block;
+  width: 180px;
+  max-width: 45vw;
+  border-bottom: 1px dotted var(--color-text-light);
+  vertical-align: middle;
+  margin-left: 0.3rem;
+}
+.event__formal-sub {
+  font-style: italic;
+  color: var(--color-text-light);
+  margin-bottom: 1.8rem;
+}
 .event__tabs { display: flex; justify-content: center; gap: 0.6rem; margin-bottom: 1.5rem; }
 .tab-btn {
   padding: 0.55rem 1.4rem;
