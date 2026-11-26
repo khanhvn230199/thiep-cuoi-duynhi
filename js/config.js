@@ -24,13 +24,12 @@ const WEDDING_CONFIG = {
   // Ảnh bìa trang mở đầu
   coverPhoto: "assets/images/cover-bg.svg",
 
-  // Dòng chữ ngày âm lịch (ghi tay vì JS không tự quy đổi âm lịch)
-  lunarDateText: "Tức ngày 28 tháng 10 năm Bính Ngọ",
-
   // Đám cưới có lễ riêng theo từng bên (nhà trai / nhà gái), nên khai báo thành
   // 2 nhóm — khách xem thiệp bấm tab "Nhà Trai" / "Nhà Gái" để xem đúng lịch
   // trình bên đó. Ngày giờ sớm nhất trong TẤT CẢ các lễ dùng để tính đếm ngược
   // và tô đậm trên lịch (các ngày có sự kiện đều được tô đậm).
+  // Mỗi lễ có "lunarText" riêng (ghi tay vì JS không tự quy đổi âm lịch) vì
+  // Bữa Cơm Thân Mật và Lễ Thành Hôn/Vu Quy không cùng một ngày âm.
   eventsBySide: {
     groom: {
       tabLabel: "Nhà Trai",
@@ -38,6 +37,7 @@ const WEDDING_CONFIG = {
         {
           label: "Bữa Cơm Thân Mật",
           dateTime: "2026-12-05T17:00:00+07:00",
+          lunarText: "Tức ngày 27 tháng 10 âm lịch",
           venueName: "Tư Gia Nhà Trai",
           address: "Thôn Đại Tảo, xã Việt Đoàn, huyện Tiên Du, Bắc Ninh",
           mapUrl:
@@ -47,6 +47,7 @@ const WEDDING_CONFIG = {
         {
           label: "Lễ Thành Hôn",
           dateTime: "2026-12-06T14:00:00+07:00",
+          lunarText: "Tức ngày 28 tháng 10 năm Bính Ngọ",
           venueName: "Tư Gia Nhà Trai",
           address: "Thôn Đại Tảo, xã Việt Đoàn, huyện Tiên Du, Bắc Ninh",
           mapUrl:
@@ -61,6 +62,7 @@ const WEDDING_CONFIG = {
         {
           label: "Bữa Cơm Thân Mật",
           dateTime: "2026-12-05T17:00:00+07:00",
+          lunarText: "Tức ngày 27 tháng 10 âm lịch",
           venueName: "Tư Gia Nhà Gái",
           address: "Thôn Ngô Xá, xã Phật Tích, huyện Tiên Du, Bắc Ninh",
           mapUrl:
@@ -70,6 +72,7 @@ const WEDDING_CONFIG = {
         {
           label: "Lễ Vu Quy",
           dateTime: "2026-12-06T13:00:00+07:00",
+          lunarText: "Tức ngày 28 tháng 10 năm Bính Ngọ",
           venueName: "Tư Gia Nhà Gái",
           address: "Thôn Ngô Xá, xã Phật Tích, huyện Tiên Du, Bắc Ninh",
           mapUrl:

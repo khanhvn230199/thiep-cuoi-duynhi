@@ -84,13 +84,13 @@
               <p class="event__slot-label">${ev.label}</p>
               <p class="event__slot-time">${fmtTime.format(new Date(ev.dateTime))}</p>
               <p class="event__slot-date">${capitalize(fmtFull.format(new Date(ev.dateTime)))}</p>
+              ${ev.lunarText ? `<p class="event__slot-lunar">${ev.lunarText}</p>` : ""}
             </div>${i < arr.length - 1 ? '<div class="event__slot-sep">→</div>' : ""}`
           )
           .join("");
         return `
         <div class="event__card">
           <div class="event__slots">${slots}</div>
-          <p class="event__lunar">${CFG.lunarDateText}</p>
           <p class="event__venue-name">${group.venueName}</p>
           <p class="event__venue-address">${group.address}</p>
           <a class="btn btn--primary" href="${group.mapUrl}" target="_blank" rel="noopener">Chỉ Đường</a>
