@@ -295,7 +295,6 @@ img { max-width: 100%; display: block; }
 
 /* ---------- GIFT ---------- */
 .gift__intro { color: var(--color-text-light); margin-bottom: 1.5rem; }
-.gift__tabs { display: flex; justify-content: center; gap: 0.6rem; margin-bottom: 1.5rem; }
 .gift__grid { display: flex; justify-content: center; }
 .gift-card {
   background: #fff;

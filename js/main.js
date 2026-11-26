@@ -103,6 +103,13 @@
         </div>`;
       })
       .join("");
+  }
+
+  // Tab Nhà Trai/Nhà Gái dùng chung cho cả khối "Thông Tin Buổi Lễ" và
+  // "Hộp Mừng Cưới" bên dưới, bấm 1 lần đổi cả 2.
+  function selectSide(sideKey) {
+    renderEventList(sideKey);
+    renderGift(sideKey);
     document
       .querySelectorAll("#eventTabs .tab-btn")
       .forEach((btn) => btn.classList.toggle("is-active", btn.dataset.side === sideKey));
@@ -116,9 +123,9 @@
     tabs.addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-side]");
       if (!btn) return;
-      renderEventList(btn.getAttribute("data-side"));
+      selectSide(btn.getAttribute("data-side"));
     });
-    renderEventList(Object.keys(CFG.eventsBySide)[0]);
+    selectSide(Object.keys(CFG.eventsBySide)[0]);
   }
 
   // ---------- Mở thiệp ----------
@@ -354,23 +361,9 @@
         <p>${g.accountName}</p>
         <button type="button" data-copy="${g.accountNo}">Sao chép STK</button>
       </div>`;
-    document
-      .querySelectorAll("#giftTabs .tab-btn")
-      .forEach((btn) => btn.classList.toggle("is-active", btn.dataset.side === sideKey));
   }
 
   function setupGifts() {
-    const tabs = document.getElementById("giftTabs");
-    tabs.innerHTML = Object.entries(CFG.eventsBySide)
-      .map(([key, side]) => `<button type="button" class="tab-btn" data-side="${key}">${side.tabLabel}</button>`)
-      .join("");
-    tabs.addEventListener("click", (e) => {
-      const btn = e.target.closest("button[data-side]");
-      if (!btn) return;
-      renderGift(btn.getAttribute("data-side"));
-    });
-    renderGift(Object.keys(CFG.eventsBySide)[0]);
-
     document.getElementById("giftGrid").addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-copy]");
       if (!btn) return;
