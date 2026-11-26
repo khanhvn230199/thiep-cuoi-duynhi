@@ -107,14 +107,15 @@ const WEDDING_CONFIG = {
 
   // Ảnh trong album, thêm/bớt tuỳ ý
   gallery: [
-    "assets/images/gallery-1.svg",
-    "assets/images/gallery-2.svg",
-    "assets/images/gallery-3.svg",
-    "assets/images/gallery-4.svg",
-    "assets/images/gallery-5.svg",
-    "assets/images/gallery-6.svg",
-    "assets/images/gallery-7.svg",
-    "assets/images/gallery-8.svg",
+    "assets/images/4.jpg",
+    "assets/images/5.jpg",
+    "assets/images/6.jpg",
+    "assets/images/7.jpg",
+    "assets/images/8.jpg",
+    "assets/images/9.jpg",
+    "assets/images/10.jpg",
+    "assets/images/11.jpg",
+    "assets/images/12.jpg",
   ],
 
   // Thông tin chuyển khoản mừng cưới — mã BIN ngân hàng tra tại https://api.vietqr.io/v2/banks
