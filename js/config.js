@@ -22,7 +22,7 @@ const WEDDING_CONFIG = {
   },
 
   // Ảnh bìa trang mở đầu
-  coverPhoto: "assets/images/cover-bg.svg",
+  coverPhoto: "assets/images/1.jpg",
 
   // Đám cưới có lễ riêng theo từng bên (nhà trai / nhà gái), nên khai báo thành
   // 2 nhóm — khách xem thiệp bấm tab "Nhà Trai" / "Nhà Gái" để xem đúng lịch

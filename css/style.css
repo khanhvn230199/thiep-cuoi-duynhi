@@ -60,8 +60,10 @@ img { max-width: 100%; display: block; }
 .cover__bg {
   position: absolute;
   inset: 0;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
+  background-color: var(--color-primary-dark);
 }
 .cover__bg::after {
   content: "";
