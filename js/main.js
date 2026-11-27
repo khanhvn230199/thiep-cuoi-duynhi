@@ -373,32 +373,17 @@
 
   function renderGift(sideKey) {
     const g = CFG.gifts[sideKey];
+    const side = CFG.eventsBySide[sideKey];
     const grid = document.getElementById("giftGrid");
+    const qrSrc = g.qrImage || vietQrUrl(g.bin, g.accountNo, g.accountName);
     grid.innerHTML = `
       <div class="gift-card">
-        <img src="${vietQrUrl(g.bin, g.accountNo, g.accountName)}" alt="QR chuyển khoản ${g.label}" />
-        <h5>${g.label}</h5>
-        <p>${g.bankName}</p>
-        <p>${g.accountNo}</p>
-        <p>${g.accountName}</p>
-        <button type="button" data-copy="${g.accountNo}">Sao chép STK</button>
+        <img src="${qrSrc}" alt="QR chuyển khoản ${side.tabLabel}" />
+        <h5>${side.tabLabel}</h5>
       </div>`;
   }
 
-  function setupGifts() {
-    document.getElementById("giftGrid").addEventListener("click", (e) => {
-      const btn = e.target.closest("button[data-copy]");
-      if (!btn) return;
-      navigator.clipboard
-        ?.writeText(btn.getAttribute("data-copy"))
-        .then(() => {
-          const old = btn.textContent;
-          btn.textContent = "Đã sao chép!";
-          setTimeout(() => (btn.textContent = old), 1500);
-        })
-        .catch(() => {});
-    });
-  }
+  function setupGifts() {}
 
   // ---------- Nhạc nền ----------
   function setupMusic() {

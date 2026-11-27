@@ -120,6 +120,8 @@ const WEDDING_CONFIG = {
 
   // Thông tin chuyển khoản mừng cưới — mã BIN ngân hàng tra tại https://api.vietqr.io/v2/banks
   // SỬA accountNo bằng số tài khoản THẬT của bạn trước khi gửi thiệp cho khách!
+  // Nếu có sẵn ảnh QR riêng (chụp từ app ngân hàng), khai báo qrImage để dùng ảnh đó
+  // thay vì tự tạo QR từ bankName/bin/accountNo.
   gifts: {
     groom: {
       label: "Chú Rể",
@@ -127,6 +129,7 @@ const WEDDING_CONFIG = {
       bin: "970436",
       accountNo: "0123456789",
       accountName: "TRAN HAI DUY",
+      qrImage: "assets/images/22.jpg",
     },
     bride: {
       label: "Cô Dâu",
@@ -134,6 +137,7 @@ const WEDDING_CONFIG = {
       bin: "970422",
       accountNo: "9876543210",
       accountName: "NGUYEN NGOC NHI",
+      qrImage: "assets/images/20.jpg",
     },
   },
 
