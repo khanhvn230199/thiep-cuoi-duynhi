@@ -254,7 +254,7 @@ img { max-width: 100%; display: block; }
 .lightbox {
   position: fixed;
   inset: 0;
-  z-index: 100;
+  z-index: 10000;
   background: #000000e6;
   display: flex;
   align-items: center;
@@ -320,26 +320,59 @@ img { max-width: 100%; display: block; }
 /* ---------- GIFT ---------- */
 .gift__intro { color: var(--color-text-light); margin-bottom: 1.5rem; }
 .gift__grid { display: flex; justify-content: center; }
-.gift-card {
-  background: #fff;
+.gift-box {
+  background: linear-gradient(180deg, #fff, #fff7ea);
   border: 1px solid #eadfce;
-  border-radius: 12px;
-  padding: 1.2rem;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
   max-width: 260px;
   width: 100%;
-}
-.gift-card img { max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 0.6rem; }
-.gift-card h5 { margin: 0 0 0.3rem; color: var(--color-primary); font-family: var(--font-heading); font-size: 1.1rem; }
-.gift-card p { margin: 0.15rem 0; font-size: 0.8rem; }
-.gift-card button {
-  margin-top: 0.5rem;
-  font-size: 0.75rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: 999px;
-  border: 1px solid var(--color-accent);
-  background: transparent;
-  color: var(--color-accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
   cursor: pointer;
+  font-family: var(--font-body);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.gift-box:hover { transform: translateY(-3px); box-shadow: 0 8px 20px #0000001a; }
+.gift-box:active { transform: scale(0.97); }
+.gift-box__icon { font-size: 2.6rem; line-height: 1; }
+.gift-box__label { color: var(--color-primary); font-family: var(--font-heading); font-size: 1.2rem; font-weight: 600; }
+.gift-box__hint { font-size: 0.78rem; color: var(--color-text-light); }
+
+/* ---------- GIFT QR MODAL ---------- */
+.gift-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: #000000d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+}
+.gift-modal[hidden] { display: none; }
+.gift-modal__card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  max-width: 340px;
+  width: 100%;
+  text-align: center;
+}
+.gift-modal__title { margin: 0 0 1rem; color: var(--color-primary); font-family: var(--font-heading); font-size: 1.2rem; }
+.gift-modal__image { max-width: 100%; height: auto; border-radius: 10px; margin-bottom: 1.2rem; }
+.gift-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.5rem;
 }
 
 /* ---------- THANK YOU ---------- */

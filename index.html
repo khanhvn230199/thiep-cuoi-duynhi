@@ -22,7 +22,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Dancing+Script:wght@600;700&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
 <!-- Mỗi lần sửa css/js, tăng số ?v=1 lên 2, 3... để trình duyệt khách không dùng bản cache cũ -->
-<link rel="stylesheet" href="css/style.css?v=11" />
+<link rel="stylesheet" href="css/style.css?v=12" />
 </head>
 <body>
 
@@ -155,6 +155,16 @@
     <div class="gift__grid" id="giftGrid"></div>
   </section>
 
+  <!-- GIFT QR MODAL: bấm vào hộp quà mới hiện, tránh bị tim rơi che khi quét/chụp -->
+  <div class="gift-modal" id="giftModal" hidden>
+    <button class="gift-modal__close" id="giftModalClose" aria-label="Đóng">&times;</button>
+    <div class="gift-modal__card">
+      <h4 class="gift-modal__title" id="giftModalTitle"></h4>
+      <img class="gift-modal__image" id="giftModalImage" src="" alt="QR chuyển khoản" />
+      <a class="btn btn--primary" id="giftModalDownload" href="" download>Tải ảnh QR</a>
+    </div>
+  </div>
+
   <!-- SỔ LƯU BÚT / RSVP -->
   <section class="section guestbook">
     <h3 class="section__title">Sổ Lưu Bút</h3>
@@ -191,6 +201,6 @@
 <audio id="bgMusic" loop></audio>
 
 <script src="js/config.js?v=5"></script>
-<script src="js/main.js?v=12"></script>
+<script src="js/main.js?v=13"></script>
 </body>
 </html>

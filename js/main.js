@@ -408,13 +408,42 @@
     const grid = document.getElementById("giftGrid");
     const qrSrc = g.qrImage || vietQrUrl(g.bin, g.accountNo, g.accountName);
     grid.innerHTML = `
-      <div class="gift-card">
-        <img src="${qrSrc}" alt="QR chuyển khoản ${side.tabLabel}" />
-        <h5>${side.tabLabel}</h5>
-      </div>`;
+      <button type="button" class="gift-box" data-qr="${qrSrc}" data-label="${side.tabLabel}">
+        <span class="gift-box__icon">🎁</span>
+        <span class="gift-box__label">${side.tabLabel}</span>
+        <span class="gift-box__hint">Bấm để mở hộp quà</span>
+      </button>`;
   }
 
-  function setupGifts() {}
+  function openGiftModal(qrSrc, label) {
+    document.getElementById("giftModalImage").src = qrSrc;
+    document.getElementById("giftModalTitle").textContent = `QR Mừng Cưới - ${label}`;
+    const downloadBtn = document.getElementById("giftModalDownload");
+    downloadBtn.href = qrSrc;
+    downloadBtn.setAttribute("download", `qr-mung-cuoi-${label}.jpg`);
+    document.getElementById("giftModal").hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeGiftModal() {
+    document.getElementById("giftModal").hidden = true;
+    document.body.style.overflow = "auto";
+  }
+
+  function setupGifts() {
+    document.getElementById("giftGrid").addEventListener("click", (e) => {
+      const box = e.target.closest(".gift-box");
+      if (!box) return;
+      openGiftModal(box.getAttribute("data-qr"), box.getAttribute("data-label"));
+    });
+    document.getElementById("giftModalClose").addEventListener("click", closeGiftModal);
+    document.getElementById("giftModal").addEventListener("click", (e) => {
+      if (e.target.id === "giftModal") closeGiftModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !document.getElementById("giftModal").hidden) closeGiftModal();
+    });
+  }
 
   // ---------- Nhạc nền ----------
   function setupMusic() {
