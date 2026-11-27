@@ -144,8 +144,39 @@
         music.play().catch(() => {});
       }
       setTimeout(() => (cover.hidden = true), 850);
+      startHeartsRain();
     });
     document.body.style.overflow = "hidden";
+  }
+
+  // ---------- Tim rơi liên tục (như tuyết rơi) sau khi mở thiệp ----------
+  let heartsRainStarted = false;
+  function startHeartsRain() {
+    if (heartsRainStarted) return;
+    heartsRainStarted = true;
+    const container = document.getElementById("heartsRain");
+    if (!container) return;
+    const hearts = ["❤️", "💕", "💖", "💗", "🩷", "💞"];
+
+    function spawnHeart() {
+      const el = document.createElement("span");
+      el.className = "heart-particle";
+      el.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      const size = (Math.random() * 1.3 + 0.8).toFixed(2);
+      const left = Math.random() * 100;
+      const duration = (Math.random() * 6 + 7).toFixed(2);
+      const drift = Math.round(Math.random() * 160 - 80);
+      const rot = Math.round(Math.random() * 360 - 180);
+      el.style.left = left + "vw";
+      el.style.fontSize = size + "rem";
+      el.style.setProperty("--drift", drift + "px");
+      el.style.setProperty("--rot", rot + "deg");
+      el.style.animationDuration = duration + "s";
+      el.addEventListener("animationend", () => el.remove());
+      container.appendChild(el);
+    }
+
+    setInterval(spawnHeart, 350);
   }
 
   // ---------- Đếm ngược ----------

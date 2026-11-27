@@ -369,3 +369,27 @@ img { max-width: 100%; display: block; }
 @media (min-width: 540px) {
   .gallery__grid { grid-template-columns: repeat(4, 1fr); }
 }
+
+/* Tim rơi liên tục sau khi mở thiệp */
+.hearts-rain {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 9999;
+}
+.heart-particle {
+  position: absolute;
+  top: -10%;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px #0000001a);
+  animation-name: heartFall;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+@keyframes heartFall {
+  0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+  8% { opacity: 0.9; }
+  90% { opacity: 0.9; }
+  100% { transform: translateY(115vh) translateX(var(--drift, 0px)) rotate(var(--rot, 180deg)); opacity: 0; }
+}
