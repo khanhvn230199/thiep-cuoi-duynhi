@@ -366,30 +366,20 @@
   function setupGuestbook() {
     renderMessages();
     const form = document.getElementById("guestbookForm");
-    const guestsInput = document.getElementById("gbGuests");
-
-    // Không tham dự thì ẩn luôn ô "Số lượng người đi cùng" vì không cần nữa.
-    function updateGuestsVisibility() {
-      guestsInput.hidden = form.querySelector('input[name="gbAttend"]:checked').value === "no";
-    }
-    form.querySelectorAll('input[name="gbAttend"]').forEach((r) => r.addEventListener("change", updateGuestsVisibility));
-    updateGuestsVisibility();
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const name = document.getElementById("gbName").value.trim();
       const phone = document.getElementById("gbPhone").value.trim();
       const attend = form.querySelector('input[name="gbAttend"]:checked').value;
-      const guests = attend === "no" ? "0" : guestsInput.value;
       const message = document.getElementById("gbMessage").value.trim();
       if (!name) return;
 
-      const payload = { name, phone, attend, guests, message, time: Date.now() };
+      const payload = { name, phone, attend, message, time: Date.now() };
       saveMessage(payload);
       sendToGoogleSheet(payload);
 
       form.reset();
-      updateGuestsVisibility();
       document.getElementById("guestbookThanks").hidden = false;
       renderMessages();
     });
