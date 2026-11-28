@@ -336,9 +336,26 @@
     all.unshift(msg);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(all));
   }
-  function renderMessages() {
+
+  // Nếu đã khai báo guestbookEndpoint (xem google-apps-script.gs), lời chúc được
+  // đọc trực tiếp từ Google Sheet dùng chung — nhờ vậy MỌI người xem thiệp đều
+  // thấy được lời chúc của nhau, không chỉ riêng máy người đã gửi. Chưa khai báo
+  // thì vẫn hiện danh sách lưu tạm trong trình duyệt (chỉ người đó tự thấy).
+  async function fetchSharedMessages() {
+    if (!CFG.guestbookEndpoint) return null;
+    try {
+      const res = await fetch(`${CFG.guestbookEndpoint}?action=list`);
+      if (!res.ok) return null;
+      return await res.json();
+    } catch {
+      return null;
+    }
+  }
+
+  async function renderMessages() {
     const list = document.getElementById("guestbookList");
-    const all = loadMessages();
+    const shared = await fetchSharedMessages();
+    const all = shared || loadMessages();
     list.innerHTML = all
       .map(
         (m) => `<div class="msg"><b>${escapeHtml(m.name)}</b>${m.message ? " — " + escapeHtml(m.message) : ""}</div>`
